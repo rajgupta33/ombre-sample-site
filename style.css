@@ -67,6 +67,7 @@ body {
     padding: 2.5rem 5rem;
     width: 100%;
     animation: fadeInDown 1s ease forwards;
+    flex-shrink: 0;
 }
 
 .nav-left ul, .nav-right ul {
@@ -623,7 +624,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .hero { min-height: 100vh; }
+    .hero { min-height: 100vh; height: auto; }
     .logo img { height: 60px; }
     .desktop-only { display: none !important; }
     .mobile-br { display: block; }
