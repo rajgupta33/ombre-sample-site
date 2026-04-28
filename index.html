@@ -1,434 +1,365 @@
-<!DOCTYPE html>
-<html lang="en">
+/* 1. Variables & Base */
+:root {
+    --primary-color: #a88a53;
+    --primary-hover: #bda26f;
+    --text-light: #ffffff;
+    --text-muted: #e6e6e6;
+    --bg-dark: #050505;
+    --bg-secondary: #111;
+    --bg-story: #0c0907;
+    --font-serif: 'Bodoni Moda', serif;
+    --font-sans: 'Inter', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMBRÉ BY AYUSHI - Handcrafted Elegance</title>
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Import Bodoni Moda (serif) and Inter (sans-serif) -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; width: 100%; }
 
-<body>
-    <div class="hero">
-        <header class="navbar">
-            <button class="mobile-menu-toggle" aria-label="Open Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
-            <nav class="nav-left">
-                <ul>
-                    <li><a href="#">COLLECTION</a></li>
-                    <li><a href="#">CUSTOMISE</a></li>
-                    <li><a href="#">ABOUT US</a></li>
-                </ul>
-            </nav>
+body {
+    font-family: var(--font-sans);
+    color: var(--text-light);
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-            <div class="logo">
-                <a href="#">
-                    <img src="logo.png" alt="Ombré by Ayushi Logo">
-                </a>
-            </div>
+/* Base Utility Classes */
+.text-center { text-align: center; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mt-4 { margin-top: 4rem; }
+.text-gold { color: var(--primary-color); }
+.text-muted-gold { color: rgba(168, 138, 83, 0.8); }
+.sep-line { width: 60px; height: 1px; background-color: var(--primary-color); margin: 1.5rem 0; }
+.center-line { margin: 1.5rem auto 3rem; }
+.section { padding: 6rem 10%; position: relative; background-color: var(--bg-dark); }
+.section-padded { padding: 6rem 10%; }
+.bg-dark-secondary { background-color: var(--bg-secondary); }
 
-            <nav class="nav-right">
-                <ul>
-                    <li><a href="#">STUDIO</a></li>
-                    <li><a href="#">JOURNAL</a></li>
-                </ul>
-            </nav>
+.section-title { font-family: var(--font-serif); font-size: 3.5rem; font-weight: 400; margin-bottom: 1rem; color: var(--text-light); }
+.section-subtext { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; max-width: 600px; margin: 0 auto 3rem; line-height: 1.6; }
+.section-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); font-weight: 300; }
 
-            <div class="nav-icons">
-                <a href="#" aria-label="Account" class="desktop-only">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Cart">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                </a>
-            </div>
-        </header>
+/* Buttons */
+.btn {
+    display: inline-flex; justify-content: center; align-items: center;
+    padding: 1.1rem 2.2rem; text-decoration: none; font-size: 0.75rem;
+    letter-spacing: 1px; text-transform: uppercase; font-weight: 500;
+    transition: var(--transition); position: relative; overflow: hidden; z-index: 1; cursor: pointer;
+}
+.btn::after {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: rgba(255, 255, 255, 0.1); transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: -1;
+}
+.btn:hover::after { transform: rotate(45deg) translateY(0); }
+.btn-primary { background-color: var(--primary-color); color: #fff; border: 1px solid var(--primary-color); }
+.btn-primary:hover { background-color: var(--primary-hover); border-color: var(--primary-hover); box-shadow: 0 5px 15px rgba(168, 138, 83, 0.3); }
+.btn-secondary { background-color: transparent; color: var(--text-light); border: 1px solid rgba(255, 255, 255, 0.5); padding: 1.1rem 2.8rem; }
+.btn-secondary:hover { border-color: var(--text-light); background-color: rgba(255, 255, 255, 0.05); }
 
-        <!-- Mobile Dropdown Menu -->
-        <div class="mobile-dropdown" id="mobile-menu">
-            <button class="close-menu" aria-label="Close Menu">&times;</button>
-            <ul class="mobile-nav-links">
-                <li><a href="#collections">COLLECTION</a></li>
-                <li><a href="#custom-experience">CUSTOMISE</a></li>
-                <li><a href="#story">ABOUT US</a></li>
-                <li><a href="#lookbook">STUDIO</a></li>
-                <li><a href="#instagram">JOURNAL</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-        </div>
+/* Visibility Utilities */
+.mobile-br { display: none; }
+.desktop-only { display: flex; }
 
-        <!-- Vertical Slider Navigation -->
-        <div class="vertical-nav">
-            <span class="active">01</span>
-            <div class="line"></div>
-            <span>03</span>
-        </div>
+/* 2. Hero Section */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 750px;
+    background-color: var(--bg-dark);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.hero::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('hero section background.png'); background-size: cover;
+    background-position: center top; background-repeat: no-repeat; z-index: 0; pointer-events: none;
+}
+.hero::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(100deg, rgba(15, 10, 5, 0.7) 0%, rgba(30, 20, 10, 0.5) 45%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1; pointer-events: none;
+}
+.hero > * { z-index: 2; position: relative; }
 
-        <main class="hero-content">
-            <div class="subheader-wrap">
-                <span class="text">HANDCRAFTED<br class="mobile-br"> WITH LOVE</span>
-                <span class="line"></span>
-            </div>
+/* Navbar */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 2.5rem 5rem; width: 100%; animation: fadeInDown 1s ease forwards; flex-shrink: 0;
+}
+.nav-left ul, .nav-right ul { list-style: none; display: flex; gap: 3rem; align-items: center; }
+.nav-left a, .nav-right a {
+    color: var(--text-light); text-decoration: none; font-size: 0.7rem;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+    transition: var(--transition); position: relative; opacity: 0.9;
+}
+.nav-left a::after, .nav-right a:not(:last-child)::after {
+    content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0;
+    background-color: var(--primary-color); transition: width 0.3s ease;
+}
+.nav-left a:hover::after, .nav-right a:not(:last-child):hover::after { width: 100%; }
+.nav-left a:hover, .nav-right a:hover { color: var(--primary-color); opacity: 1; }
+.logo img { height: 80px; object-fit: contain; transition: transform 0.5s ease, filter 0.5s ease; }
+.logo a:hover img { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(168, 138, 83, 0.3)); }
+.nav-icons { display: flex; gap: 1.5rem; }
+.nav-icons a { display: flex; align-items: center; opacity: 0.9; color: var(--text-light); }
+.nav-icons svg { transition: var(--transition); }
+.nav-icons a:hover svg { stroke: var(--primary-color); transform: translateY(-2px); }
+.mobile-menu-toggle { display: none; background: none; border: none; color: var(--text-light); cursor: pointer; opacity: 0.9; transition: var(--transition); }
+.mobile-menu-toggle:hover { color: var(--primary-color); opacity: 1; }
 
-            <h1 class="main-title">Handcrafted<br>Elegance</h1>
-            <h2 class="sub-title">For the Modern & Traditional Woman</h2>
+/* Hero Content */
+.vertical-nav {
+    position: absolute; left: 4rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8; z-index: 5; animation: fadeInLeft 1.5s ease forwards;
+}
+.vertical-nav span { font-family: var(--font-sans); font-weight: 400; }
+.vertical-nav .active { font-weight: 500; color: var(--text-light); }
+.vertical-nav .line { width: 1px; height: 120px; background-color: rgba(255, 255, 255, 0.2); position: relative; }
+.vertical-nav .line::before { content: ''; position: absolute; left: 0; top: 0; width: 1px; height: 60px; background-color: var(--primary-color); }
 
-            <div class="description-container">
-                <p class="description">
-                    Timeless designs. Finest fabrics.<br>
-                    Made for your most special moments.
-                </p>
-            </div>
+.hero-content { margin: auto 0 auto; padding-left: 9%; max-width: 55%; }
+.subheader-wrap { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; animation: fadeInUp 1.2s ease forwards; opacity: 0; }
+.subheader-wrap .text { font-size: 0.7rem; letter-spacing: 2px; color: var(--primary-color); text-transform: uppercase; font-weight: 500; }
+.subheader-wrap .line { width: 45px; height: 1px; background-color: var(--primary-color); }
+.main-title { font-family: var(--font-serif); font-size: 6.5rem; line-height: 1.1; font-weight: 400; margin-bottom: 1.2rem; letter-spacing: -1px; animation: fadeInUp 1.4s ease forwards; opacity: 0; }
+.sub-title { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 400; color: var(--primary-color); margin-bottom: 2rem; letter-spacing: 0.5px; animation: fadeInUp 1.6s ease forwards; opacity: 0; }
+.description-container { margin-bottom: 3.5rem; padding-top: 1.5rem; position: relative; max-width: 400px; animation: fadeInUp 1.8s ease forwards; opacity: 0; }
+.description-container::before { content: ''; position: absolute; top: 0; left: 0; width: 40px; height: 1px; background-color: rgba(255, 255, 255, 0.3); }
+.description { font-size: 1rem; line-height: 1.6; color: var(--text-muted); font-weight: 300; letter-spacing: 0.3px; }
+.cta-buttons { display: flex; gap: 1.5rem; animation: fadeInUp 2s ease forwards; opacity: 0; }
 
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">EXPLORE COLLECTION</a>
-                <a href="#" class="btn btn-secondary">BOOK CUSTOM DESIGN</a>
-            </div>
-        </main>
+.scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+    opacity: 0.9; transition: var(--transition); text-decoration: none; color: var(--text-light); animation: fadeIn 2s ease forwards 1s;
+}
+.scroll-indicator:hover { opacity: 1; }
+.scroll-indicator:hover .mouse-icon { border-color: var(--primary-color); }
+.scroll-indicator:hover span { color: var(--primary-color); }
+.scroll-indicator span { font-size: 0.6rem; letter-spacing: 2px; font-weight: 500; transition: color 0.3s; }
+.mouse-icon { width: 20px; height: 32px; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 12px; display: flex; justify-content: center; padding-top: 6px; transition: border-color 0.3s; }
+.wheel { width: 4px; height: 6px; background-color: var(--primary-color); border-radius: 2px; animation: scroll 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1); }
 
-        <a href="#" class="scroll-indicator" aria-label="Scroll down">
-            <div class="mouse-icon">
-                <div class="wheel"></div>
-            </div>
-            <span>SCROLL TO EXPLORE</span>
-        </a>
-    </div>
+/* 3. Mobile Dropdown */
+.mobile-dropdown {
+    position: fixed; top: -100%; left: 0; width: 100%; height: 100vh; background: rgba(10, 8, 7, 0.98); z-index: 9999;
+    padding: 6rem 2rem 3rem; transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1); display: flex; flex-direction: column; align-items: center;
+}
+.mobile-dropdown.active { top: 0; }
+.close-menu { position: absolute; top: 2rem; right: 2.5rem; background: none; border: none; color: var(--text-light); font-size: 3rem; cursor: pointer; font-weight: 300; line-height: 1; transition: color 0.3s; }
+.close-menu:hover { color: var(--primary-color); }
+.mobile-nav-links { list-style: none; text-align: center; width: 100%; margin-top: 2rem; }
+.mobile-nav-links li { margin-bottom: 2.5rem; opacity: 0; transform: translateY(-20px); transition: all 0.4s ease; }
+.mobile-dropdown.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+.mobile-dropdown.active .mobile-nav-links li:nth-child(1) { transition-delay: 0.1s; }
+.mobile-dropdown.active .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
+.mobile-dropdown.active .mobile-nav-links li:nth-child(3) { transition-delay: 0.3s; }
+.mobile-dropdown.active .mobile-nav-links li:nth-child(4) { transition-delay: 0.4s; }
+.mobile-dropdown.active .mobile-nav-links li:nth-child(5) { transition-delay: 0.5s; }
+.mobile-dropdown.active .mobile-nav-links li:nth-child(6) { transition-delay: 0.6s; }
+.mobile-nav-links a { color: var(--text-light); text-decoration: none; font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; font-family: var(--font-sans); transition: color 0.3s; }
+.mobile-nav-links a:hover { color: var(--primary-color); }
 
-    <!-- Mobile Features Section (Hidden on Desktop) -->
-    <div class="mobile-features">
-        <section class="features-row dark-features">
-            <div class="feat-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2l3 6 4-3-2 6 5 2-6 3 1 6-5-4-5 4 1-6-6-3 5-2-2-6 4 3 3-6z" />
-                </svg>
-                <h4>HANDCRAFTED</h4>
-                <p>With Love</p>
-            </div>
-            <div class="feat-divider"></div>
-            <div class="feat-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <path d="M3 9h18" />
-                    <path d="M9 21V9" />
-                    <path d="M15 21V9" />
-                </svg>
-                <h4>PREMIUM FABRICS</h4>
-                <p>Quality You Deserve</p>
-            </div>
-            <div class="feat-divider"></div>
-            <div class="feat-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 21V9a2 2 0 0 1 2-2v0a2 2 0 0 1 2 2v12" />
-                    <path d="M7 21h10" />
-                    <path d="M4 11h16" />
-                    <path d="M12 7V3" />
-                </svg>
-                <h4>CUSTOM DESIGNS</h4>
-                <p>Made Just For You</p>
-            </div>
-        </section>
+/* 4. Desktop USP */
+.mobile-features { display: none; }
+.usp-grid { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.usp-item { flex: 1; min-width: 220px; text-align: center; }
+.gold-icon { stroke: var(--primary-color); margin-bottom: 1.5rem; transition: transform 0.3s; }
+.usp-item:hover .gold-icon { transform: translateY(-5px); }
+.usp-item h4 { font-size: 1.1rem; letter-spacing: 1px; font-weight: 500; margin-bottom: 0.8rem; }
+.usp-item p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        <section class="features-row light-features">
-            <div class="feat-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 8v4l3 3" />
-                </svg>
-                <h4>MADE IN INDIA</h4>
-                <p>Proudly Local</p>
-            </div>
-            <div class="feat-divider"></div>
-            <div class="feat-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2s-5 4-5 10c0 5 4 10 4 10s4-5 4-10c0-6-5-10-5-10z" />
-                    <path d="M12 22V12" />
-                </svg>
-                <h4>SUSTAINABLE</h4>
-                <p>Conscious Choice</p>
-            </div>
-            <div class="feat-divider"></div>
-            <div class="feat-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-                <h4>LIMITED PIECES</h4>
-                <p>Exclusively Yours</p>
-            </div>
-        </section>
-    </div>
-    <!-- 2. COLLECTION PREVIEW SECTION -->
-    <section class="section section-padded" id="collections">
-        <div class="container text-center">
-            <h2 class="section-title" id="col1">Curated Collections</h2>
-            <p class="section-subtext" id="col2">Designed for every moment — from everyday elegance to grandest
-                celebrationsss.</p>
+/* 5. Collections */
+.collection-row { display: flex; gap: 2rem; overflow-x: auto; padding-bottom: 2rem; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none; }
+.collection-row::-webkit-scrollbar { display: none; }
+.col-card { min-width: 320px; flex: 1; cursor: pointer; scroll-snap-align: start; }
+.col-img-wrapper { position: relative; width: 100%; height: 450px; overflow: hidden; border-radius: 2px; }
+.col-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.col-card:hover .col-img-wrapper img { transform: scale(1.05); }
+.col-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; }
+.col-card:hover .col-hover { opacity: 1; }
+.col-hover a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid var(--text-light); padding-bottom: 5px; }
+.col-card h3 { margin-top: 1.5rem; font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; }
 
-            <div class="collection-row">
-                <div class="col-card">
-                    <div class="col-img-wrapper">
-                        <img src="couture_gold_1777292977097.png" alt="Festive Edit">
-                        <div class="col-hover">
-                            <a href="#">View Collection &rarr;</a>
-                        </div>
-                    </div>
-                    <h3>Festive Edit</h3>
-                </div>
-                <div class="col-card">
-                    <div class="col-img-wrapper">
-                        <img src="couture_purple_1777292956648.png" alt="Wedding Couture">
-                        <div class="col-hover">
-                            <a href="#">View Collection &rarr;</a>
-                        </div>
-                    </div>
-                    <h3>Wedding Couture</h3>
-                </div>
-                <div class="col-card">
-                    <div class="col-img-wrapper">
-                        <img src="couture_green_1777292940936.png" alt="Everyday Luxury">
-                        <div class="col-hover">
-                            <a href="#">View Collection &rarr;</a>
-                        </div>
-                    </div>
-                    <h3>Everyday Luxury</h3>
-                </div>
-                <div class="col-card">
-                    <div class="col-img-wrapper">
-                        <img src="sample.png" alt="Limited Pieces">
-                        <div class="col-hover">
-                            <a href="#">View Collection &rarr;</a>
-                        </div>
-                    </div>
-                    <h3>Limited Pieces</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+/* 6. Signature Split */
+.signature-section { padding: 0; }
+.split-container { display: flex; width: 100%; min-height: 85vh; }
+.split-image { flex: 1; min-height: 60vh; background-image: url('hero section background.png'); background-size: cover; background-position: center; transition: background-position 2s ease; }
+.split-container:hover .split-image { background-position: center 60%; }
+.split-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 5rem 8%; background-color: var(--bg-story); }
 
-    <!-- 3. SIGNATURE PIECE SECTION -->
-    <section class="section signature-section" id="signature">
-        <div class="split-container">
-            <div class="split-image parallax-bg"></div>
-            <div class="split-content">
-                <h2 class="section-title" id="sig1">Regal Layers</h2>
-                <div class="sep-line"></div>
-                <p class="section-text" id="sig2">Crafted for your most timeless moments.<br>Every thread tells a story
-                    of heritage, elegance, and detail.</p>
-                <a href="#" class="btn btn-secondary mt-2">Explore This Look</a>
-            </div>
-        </div>
-    </section>
+/* 7. Custom Experience */
+.steps-row { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; gap: 1rem; }
+.step-card { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.step-number { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--primary-color); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-family: var(--font-serif); margin-bottom: 1.5rem; background-color: var(--bg-secondary); z-index: 2; transition: all 0.3s; }
+.step-card:hover .step-number { background-color: var(--primary-color); color: #000; }
+.step-card h4 { font-size: 1rem; letter-spacing: 1px; font-weight: 400; }
+.step-line { flex: 1; height: 1px; background-color: rgba(168, 138, 83, 0.3); margin-top: -3rem; }
 
-    <!-- 4. WHY OMBRÉ (Desktop USP, hidden on small screens to prefer mobile feature layout) -->
-    <section class="section section-padded desktop-usp" id="why-ombre">
-        <div class="container text-center">
-            <h2 class="section-title" id="usp1">Why Choose Ombre</h2>
-            <div class="sep-line center-line"></div>
+/* 8. Lookbook */
+.lookbook-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem; }
+.look-img { width: 100%; height: 600px; overflow: hidden; }
+.look-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.look-img:hover img { transform: scale(1.05); }
 
-            <div class="usp-grid">
-                <div class="usp-item">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="gold-icon" stroke="currentColor"
-                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2l3 6 4-3-2 6 5 2-6 3 1 6-5-4-5 4 1-6-6-3 5-2-2-6 4 3 3-6z" />
-                    </svg>
-                    <h4>Handcrafted with Love</h4>
-                    <p>Every piece is made with precision and care</p>
-                </div>
-                <div class="usp-item">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="gold-icon" stroke="currentColor"
-                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18" />
-                        <path d="M9 21V9" />
-                        <path d="M15 21V9" />
-                    </svg>
-                    <h4>Premium Fabrics</h4>
-                    <p>Only the finest materials, sourced responsibly</p>
-                </div>
-                <div class="usp-item">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="gold-icon" stroke="currentColor"
-                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10 21V9a2 2 0 0 1 2-2v0a2 2 0 0 1 2 2v12" />
-                        <path d="M7 21h10" />
-                        <path d="M4 11h16" />
-                        <path d="M12 7V3" />
-                    </svg>
-                    <h4>Custom Designs</h4>
-                    <p>Tailored to your unique style</p>
-                </div>
-                <div class="usp-item">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="gold-icon" stroke="currentColor"
-                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M12 8v4l3 3" />
-                    </svg>
-                    <h4>Made in India</h4>
-                    <p>Celebrating local craftsmanship</p>
-                </div>
-            </div>
-        </div>
-    </section>
+/* 9. Brand Story */
+.brand-story { padding: 10rem 10%; background-color: var(--bg-story); }
+.brand-story .section-title { font-size: 4rem; }
+.story-crest { height: 100px; margin-bottom: 2rem; opacity: 0.8; }
 
-    <!-- 5. CUSTOM DESIGN EXPERIENCE -->
-    <section class="section section-padded bg-dark-secondary" id="custom-experience">
-        <div class="container text-center">
-            <h2 class="section-title text-gold" id="cust1">Design Your Dream Outfit</h2>
-            <p class="section-subtext text-muted-gold" id="cust2">From idea to creation — we bring your vision to life.
-            </p>
+/* 10. Instagram */
+.insta-row { display: flex; gap: 1rem; margin-top: 3rem; overflow-x: auto; }
+.insta-img { flex: 1; min-width: 250px; height: 350px; overflow: hidden; }
+.insta-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, opacity 0.5s; opacity: 0.8; }
+.insta-img:hover img { transform: scale(1.05); opacity: 1; }
 
-            <div class="steps-row">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h4>Share Your Inspiration</h4>
-                </div>
-                <div class="step-line"></div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h4>Get Personal Consultation</h4>
-                </div>
-                <div class="step-line"></div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h4>Crafted Just For You</h4>
-                </div>
-            </div>
+/* 11. Testimonials */
+.testi-row { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.testi-card { flex: 1; min-width: 300px; max-width: 500px; padding: 4rem 3rem; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0a0a0a; transition: transform 0.3s; }
+.testi-card:hover { transform: translateY(-5px); border-color: rgba(168, 138, 83, 0.3); }
+.testi-card p { font-family: var(--font-serif); font-size: 1.4rem; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
+.testi-card span { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
 
-            <div class="mt-4">
-                <a href="https://wa.me/" class="btn btn-primary" target="_blank">Start Your Custom Order</a>
-            </div>
-        </div>
-    </section>
+/* 12. Footer */
+.footer-section { background-color: var(--bg-dark); padding: 8rem 10% 2rem; border-top: 1px solid rgba(168, 138, 83, 0.2); }
+.contact-details p { font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-light); font-weight: 300; }
+.social-links a { display: inline-block; color: var(--primary-color); transition: transform 0.3s; margin: 0 0.5rem; }
+.social-links a:hover { transform: translateY(-3px); }
+.footer-ctas { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.footer-bottom { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.8rem; color: #888; letter-spacing: 1px; }
 
-    <!-- 6. FEATURED LOOKBOOK -->
-    <section class="section section-padded" id="lookbook">
-        <div class="container text-center">
-            <h2 class="section-title" id="look1">Crafted for the Spotlight</h2>
-            <p class="section-subtext" id="look2">A glimpse into our finest creations.</p>
+/* Animations */
+@keyframes scroll { 0% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(8px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-            <div class="lookbook-grid">
-                <div class="look-img"><img src="couture_green_1777292940936.png" class="zoom-hover" alt="Lookbook 1">
-                </div>
-                <div class="look-img"><img src="couture_gold_1777292977097.png" class="zoom-hover" alt="Lookbook 2">
-                </div>
-                <div class="look-img"><img src="couture_purple_1777292956648.png" class="zoom-hover" alt="Lookbook 3">
-                </div>
-                <div class="look-img"><img src="sample.png" class="zoom-hover" alt="Lookbook 4"></div>
-            </div>
-        </div>
-    </section>
+/* ========================================= */
+/* MEDIA QUERIES (Mobile First & Max Widths) */
+/* ========================================= */
 
-    <!-- 7. BRAND STORY -->
-    <section class="section brand-story" id="story">
-        <div class="container text-center">
-            <img src="logo.png" class="story-crest" alt="Brand Crest">
-            <h2 class="section-title" id="story1">A Story of Craft & Culture</h2>
-            <div class="sep-line center-line"></div>
-            <p class="section-text mx-auto" id="story2" style="max-width: 600px;">
-                Ombre by Ayushi is more than a label — it is a celebration of artistry, tradition, and modern
-                femininity.<br><br>
-                Each design blends timeless heritage with contemporary elegance, crafted for women who carry both grace
-                and strength.
-            </p>
-        </div>
-    </section>
+/* Large Desktop Adjustments */
+@media (max-width: 1400px) {
+    .main-title { font-size: 5.5rem; }
+    .hero-content { padding-left: 10%; max-width: 65%; }
+}
 
-    <!-- 8. INSTAGRAM SECTION -->
-    <section class="section section-padded" id="instagram">
-        <div class="container text-center">
-            <h2 class="section-title" id="insta1">Follow Our Journey</h2>
-            <p class="section-subtext" id="insta2">Real women. Real elegance. Real stories.</p>
+@media (max-width: 1100px) {
+    .navbar { padding: 1.5rem 3rem; }
+    .main-title { font-size: 4.5rem; }
+    .hero-content { padding-left: 12%; }
+}
 
-            <div class="insta-row">
-                <div class="insta-img"><img src="sample.png" alt="Insta 1"></div>
-                <div class="insta-img"><img src="couture_purple_1777292956648.png" alt="Insta 2"></div>
-                <div class="insta-img"><img src="couture_gold_1777292977097.png" alt="Insta 3"></div>
-                <div class="insta-img"><img src="couture_green_1777292940936.png" alt="Insta 4"></div>
-            </div>
+@media (max-width: 900px) {
+    .navbar { padding: 1.5rem 2rem; justify-content: space-between; }
+    .nav-left ul, .nav-right ul { display: none; }
+    .mobile-menu-toggle { display: block; order: -1; }
+    .logo { order: 0; }
+    .nav-icons { order: 1; }
+    .logo img { height: 60px; }
+    .hero-content { padding-left: 10%; max-width: 90%; }
+    .main-title { font-size: 3.5rem; }
+    .sub-title { font-size: 1.3rem; margin-bottom: 1.5rem; }
+    .description-container { margin-bottom: 2.5rem; }
+    .vertical-nav { display: none; }
+}
 
-            <div class="mt-3">
-                <a href="https://www.instagram.com/ombrebyaayushii/" target="_blank" class="btn btn-secondary">Follow on
-                    Instagram &rarr;</a>
-            </div>
-        </div>
-    </section>
+@media (max-width: 768px) {
+    .navbar { padding: 0.75rem 1.5rem; }
+    .nav-icons { gap: 1rem; }
+    .main-title { font-size: 3rem; }
+    .sub-title { font-size: 1.1rem; }
+    .cta-buttons { flex-direction: column; align-items: stretch; max-width: 100%; width: 100%; }
+    .btn { width: 100%; text-align: center; }
+    .scroll-indicator { bottom: 1.5rem; }
+    .section { padding: 5rem 5%; }
+    .split-container { flex-direction: column; }
+    .split-image { min-height: 40vh; }
+    .split-content { padding: 4rem 10%; text-align: center; justify-content: center; align-items: center; }
+    .split-content .sep-line { margin-left: auto; margin-right: auto; }
+}
 
-    <!-- 9. TESTIMONIALS -->
-    <section class="section section-padded bg-dark-secondary" id="testimonials">
-        <div class="container text-center">
-            <h2 class="section-title" id="test1">Loved by Women Who Value Elegance</h2>
-            <div class="sep-line center-line"></div>
+/* Mobile Devices Rewrite (Cleaned Up) */
+@media (max-width: 480px) {
+    /* Hero Adjustments */
+    .hero { min-height: 100vh; min-height: 100dvh; height: auto; }
+    .hero::after {
+        background-position: center bottom;
+        background-attachment: scroll;
+        transform: scale(1.15);
+        transform-origin: center bottom;
+    }
+    
+    .logo img { height: 60px; }
+    .desktop-only { display: none !important; }
+    .mobile-br { display: block; }
+    
+    .hero-content {
+        padding-left: 8%; padding-right: 8%;
+        max-width: 100%; margin-top: 0; padding-top: 2rem;
+        margin-bottom: 6rem; text-align: left;
+    }
+    
+    .subheader-wrap { flex-direction: column; align-items: flex-start; justify-content: flex-start; margin-bottom: 1.5rem; gap: 0.5rem; }
+    .subheader-wrap .line { width: 40px; }
+    .main-title { font-size: 3.2rem; margin-bottom: 1rem; letter-spacing: -0.5px; line-height: 1.05; }
+    .sub-title { font-size: 1.15rem; max-width: 250px; }
+    .description-container { margin: 0 0 2.5rem; padding-top: 1.2rem; }
+    .description-container::before { left: 0; transform: translateX(0); }
+    .cta-buttons { flex-direction: column; max-width: 260px; gap: 1rem; }
+    .btn { padding: 1rem 1.5rem; font-size: 0.7rem; letter-spacing: 1.5px; }
+    .nav-icons svg, .mobile-menu-toggle svg { width: 22px; height: 22px; }
 
-            <div class="testi-row">
-                <div class="testi-card">
-                    <p>“The detailing is just beautiful… felt like royalty.”</p>
-                    <span class="text-gold">- Client Review</span>
-                </div>
-                <div class="testi-card">
-                    <p>“Custom outfit fit perfectly. Worth every penny.”</p>
-                    <span class="text-gold">- Client Review</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. CONTACT / FOOTER -->
-    <footer class="footer-section" id="contact">
-        <div class="container text-center">
-            <h2 class="section-title text-gold" id="contact1">Let’s Create Something Beautiful Together</h2>
-            <div class="contact-details">
-                <p>📍 Studio: Agra, India</p>
-                <p>📩 Email: hello@ombrebyayushi.com</p>
-                <p>📞 WhatsApp: +91 00000 00000</p>
-            </div>
-            <div class="social-links mt-2">
-                <a href="https://www.instagram.com/ombrebyaayushii/" target="_blank" aria-label="Instagram">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-            </div>
-            <div class="footer-ctas mt-3">
-                <a href="#" class="btn btn-primary">Book Appointment</a>
-                <a href="https://wa.me/" class="btn btn-secondary">Chat on WhatsApp</a>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <p>&copy; 2026 OMBRÉ BY AYUSHI. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-
-</html>
+    /* Sections Mobile Layouts */
+    .section-title { font-size: 2.5rem; }
+    .section, .brand-story, .footer-section { padding-left: 5%; padding-right: 5%; }
+    
+    .col-card { min-width: 85vw; }
+    
+    .steps-row { flex-direction: column; }
+    .step-line { width: 1px; height: 50px; margin: 10px 0; }
+    
+    .lookbook-grid { grid-template-columns: 1fr; }
+    .look-img { height: 400px; }
+    
+    .insta-row { flex-direction: column; overflow-x: hidden; }
+    
+    .testi-row { flex-direction: column; gap: 1.5rem; }
+    .testi-card { padding: 2.5rem 1.5rem; min-width: 100%; }
+    .testi-card p { font-size: 1.1rem; }
+    
+    .brand-story .section-title { font-size: 2.8rem; }
+    .story-crest { height: 80px; }
+    
+    .footer-ctas { flex-direction: column; align-items: center; width: 100%; }
+    
+    /* Mobile USP / Features Styling */
+    .desktop-usp { display: none !important; }
+    .mobile-features { display: flex; flex-direction: column; width: 100%; }
+    
+    .features-row { display: flex; justify-content: space-evenly; align-items: center; padding: 3rem 0.5rem; width: 100%; }
+    .dark-features { background-color: #17120e; color: var(--primary-color); box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.4); }
+    .dark-features p { color: #b3b3b3; }
+    .dark-features svg { stroke: var(--primary-color); }
+    
+    .light-features { background-color: #eee9e1; color: #4a3c2e; }
+    .light-features p { color: #7a6e62; }
+    .light-features h4 { color: #4a3c2e; }
+    .light-features svg { stroke: #4a3c2e; }
+    
+    .feat-item { display: flex; flex-direction: column; align-items: center; text-align: center; width: 32%; }
+    .feat-item svg { margin-bottom: 1rem; }
+    .feat-item h4 { font-size: 0.55rem; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.4rem; font-family: var(--font-sans); }
+    .feat-item p { font-size: 0.5rem; font-family: var(--font-sans); }
+    
+    .feat-divider { width: 1px; height: 60px; background-color: rgba(168, 138, 83, 0.3); }
+    .light-features .feat-divider { background-color: rgba(74, 60, 46, 0.15); }
+}
