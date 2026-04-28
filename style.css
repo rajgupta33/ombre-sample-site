@@ -74,6 +74,10 @@ body {
     width: 100%;
     animation: fadeInDown 1s ease forwards;
     flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
 .nav-left ul, .nav-right ul {
@@ -210,6 +214,7 @@ body {
     margin-bottom: auto;
     padding-left: 9%;
     max-width: 55%;
+    padding-top: 100px; /* offset for absolute navbar */
 }
 
 .subheader-wrap {
@@ -634,7 +639,7 @@ body {
     .logo img { height: 60px; }
     .desktop-only { display: none !important; }
     .mobile-br { display: block; }
-    .hero-content { padding-left: 8%; padding-right: 8%; max-width: 100%; margin-top: 0; padding-top: 2rem; margin-bottom: 6rem; text-align: left; }
+    .hero-content { padding-left: 8%; padding-right: 8%; max-width: 100%; margin-top: 0; padding-top: 100px; margin-bottom: 6rem; text-align: left; }
     
     .subheader-wrap { flex-direction: column; align-items: flex-start; justify-content: flex-start; margin-bottom: 1.5rem; gap: 0.5rem; }
     .subheader-wrap .line { width: 40px; }
