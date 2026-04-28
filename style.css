@@ -14,15 +14,16 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 /* Base utility classes */
 .mobile-br { display: none; }
 .desktop-only { display: flex; }
 .mobile-features { display: none; }
 
-html, body {
-    height: 100%;
-    width: 100%;
-}
 body {
     font-family: var(--font-sans);
     color: var(--text-light);
@@ -37,6 +38,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* dynamic viewport height — accounts for mobile browser chrome */
     min-height: 750px;
     background-image: url('hero section background.png');
     background-size: cover;
@@ -65,17 +67,13 @@ body {
 
 /* Navbar */
 .navbar {
-    position: absolute;   /* ✅ ADD THIS */
-    top: 0;               /* ✅ ADD THIS */
-    left: 0;              /* ✅ ADD THIS */
-    width: 100%;
-    z-index: 10;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2.5rem 5rem;
+    width: 100%;
     animation: fadeInDown 1s ease forwards;
+    flex-shrink: 0;
 }
 
 .nav-left ul, .nav-right ul {
@@ -614,7 +612,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .hero { background-position: center top; }
+    .hero { background-position: center top; background-attachment: scroll; }
     .navbar { padding: 0.75rem 1.5rem; }
     .nav-icons { gap: 1rem; }
     .main-title { font-size: 3rem; }
@@ -632,7 +630,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .hero { min-height: 100vh; height: auto; }
+    .hero { min-height: 100vh; min-height: 100dvh; height: auto; }
     .logo img { height: 60px; }
     .desktop-only { display: none !important; }
     .mobile-br { display: block; }
